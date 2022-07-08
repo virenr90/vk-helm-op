@@ -7,3 +7,4 @@ spec:
     repository: https://github.com/virenr90/vk-helm-op
     # version: 1.0.0
     name: namespace-helm-template
+    branch: main
