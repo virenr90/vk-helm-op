@@ -1,0 +1,64 @@
+suite: test namespace
+templates:
+  - namespaces.yaml
+tests:
+  - it: namespace default values
+    set:
+      environments:
+        - name: env1
+          environment: env
+      applications:
+        - name: app1
+          cluster-name-prefix: cluster1
+    asserts:
+      - isKind:
+          of: Namespace
+      - isAPIVersion:
+          of: v1
+  - it: namespace name
+    set:
+      environments:
+        - name: env1
+          environment: env
+      applications:
+        - name: app1
+          cluster-name-prefix: cluster1
+    asserts:
+      - equal:
+          path: metadata.name
+          value: env1-app1
+  - it: namespace name
+    set:
+      environments:
+        - name: env1
+          environment: env
+      applications:
+        - name: app1
+          cluster-name-prefix: cluster1
+    asserts:
+      - isNotEmpty:
+          path: metadata.annotations
+  - it: set istio.io/rev label
+    set:
+      environments:
+        - name: env1
+          environment: env
+      applications:
+        - name: app1
+          cluster-name-prefix: cluster1
+          labels:
+            istio.io/rev: asm-1112-17
+    asserts:
+      - isNotEmpty:
+          path: metadata.labels
+  - it: empty namespace labels
+    set:
+      environments:
+        - name: env1
+          environment: env
+      applications:
+        - name: app1
+          cluster-name-prefix: cluster1
+    asserts:
+      - isEmpty:
+          path: metadata.labels
