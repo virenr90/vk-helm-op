@@ -14,10 +14,11 @@
 # apiVersion: helm.fluxcd.io/v1
 # kind: HelmRelease
 # metadata:
-#   name: podinfo
+#   name: namespace-helm-template
 #   namespace: default
 # spec:
 #   chart:
 #     repository: https://github.com/virenr90/acm
 #     name: namespace-helm-template
-#     # version: o.1.0
+#     version: v1.0
+    
